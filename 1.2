@@ -1,0 +1,19 @@
+#define pinX A1       // ось X джойстика
+#define pinY A0       // ось Y джойстика
+void setup() {
+   pinMode(pinX, INPUT); // указываем пин для джойстика
+   pinMode(pinY, INPUT); // указываем пин для джойстика
+   pinMode(2, OUTPUT);   // пин для мотрочика с права с верху
+   pinMode(3, OUTPUT);   // пин для моторчика с права с низу
+   pinMode(4, OUTPUT);   // пин для моторчика с лева с верху
+   pinMode(5, OUTPUT);   // пин для моторчика с лева внизу 
+   pinMode(6, OUTPUT);   // пин для реверса 
+}
+void loop() {
+   int X = analogRead(pinX);      // считываем значение оси X
+   int Y = analogRead(pinY);      // считываем значение оси Y
+
+   if (Y > 550) {digitalWrite(2,HIGH); digitalWrite(3,HIGH);} // поворот на право
+   if (Y < 500) {digitalWrite(4,HIGH); digitalWrite(5,HIGH);} // поворот на лево
+   if (X > 550) {digitalWrite(2,HIGH); digitalWrite(3,HIGH); digitalWrite(4,HIGH); digitalWrite(5,HIGH);}  // ход прямо
+   if (X < 500) {digitalWrite(6, HIGH);} // реверс
